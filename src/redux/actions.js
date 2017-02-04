@@ -1,0 +1,1 @@
+export const CHOOSE_WINNER = 'CHOOSE_WINNER';
