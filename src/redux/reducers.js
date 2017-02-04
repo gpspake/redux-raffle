@@ -1,6 +1,17 @@
 import { CHOOSE_WINNER } from './actions'
 
-const DEFAULT_STATE = {};
+const DEFAULT_STATE = {
+  contestants: [
+    { id: '111', name: 'john' },
+    { id: '222', name: 'mary' },
+    { id: '333', name: 'dave' }
+  ],
+  winner: {},
+  winners: [
+    { id: '444', name: 'joan' },
+    { id: '555', name: 'jake' }
+  ]
+};
 
 const chooseWinner = (state, action) => {
   const winner = state.contestants[action.winnerIndex];
