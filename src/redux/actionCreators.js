@@ -1,7 +1,9 @@
-import { CHOOSE_WINNER } from './actions'
+import { CHOOSE_WINNER, SAVE_WINNER } from './actions'
 
-const chooseWinner = (winnerIndex) => {
+export const chooseWinner = (winnerIndex) => {
   return { type: CHOOSE_WINNER, winnerIndex }
 };
 
-export default chooseWinner;
+export const saveWinner = () => {
+  return { type: SAVE_WINNER }
+};
