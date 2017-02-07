@@ -1,4 +1,4 @@
-import { CHOOSE_WINNER, SAVE_WINNER } from './actions'
+import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER } from './actions'
 import Data from '../data.json';
 
 const DEFAULT_STATE = Data;
@@ -20,12 +20,20 @@ const saveWinner = (state) => {
   return Object.assign({}, state, {winners}, {winner});
 };
 
+const rejectWinner = (state) => {
+  const contestants = [...state.contestants, state.winner]
+  const winner = {}
+  return Object.assign({}, state, {contestants}, {winner});
+};
+
 const rootReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case CHOOSE_WINNER:
       return chooseWinner(state, action);
     case SAVE_WINNER:
       return saveWinner(state);
+    case REJECT_WINNER:
+      return rejectWinner(state);
     default:
       return state
   }

@@ -5,15 +5,17 @@ import './App.css';
 import CurrentWinner from './CurrentWinner'
 import Winners from './Winners'
 import Contestants from './Contestants'
-import { chooseWinner, saveWinner } from './redux/actionCreators'
+import { chooseWinner, saveWinner, rejectWinner } from './redux/actionCreators'
 
 const Raffle = React.createClass({
   handleChooseWinner() {
     this.props.dispatchChooseWinner(1)
   },
   handleSaveWinner() {
-    console.log('winner saved')
     this.props.dispatchSaveWinner();
+  },
+  handleRejectWinner() {
+    this.props.dispatchRejectWinner();
   },
   render() {
     return (
@@ -25,7 +27,7 @@ const Raffle = React.createClass({
           <p className="App-intro">
             To get started, edit <code>src/App.js</code> and save to reload.
           </p>
-          <CurrentWinner winner={this.props.currentWinner} saveWinner={this.handleSaveWinner}/>
+          <CurrentWinner winner={this.props.currentWinner} saveWinner={this.handleSaveWinner} rejectWinner={this.handleRejectWinner}/>
           <Contestants contestants={this.props.contestants} />
           <Winners winners={this.props.winners} />
           <button onClick={this.handleChooseWinner}>Choose Winner</button>
@@ -41,9 +43,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     dispatchSaveWinner (winnerIndex) {
       dispatch(saveWinner(winnerIndex))
+    },
+    dispatchRejectWinner (winnerIndex) {
+      dispatch(rejectWinner(winnerIndex))
     }
   }
-}
+};
 
 const mapStateToProps = (state) => {
   console.log('state...', state);

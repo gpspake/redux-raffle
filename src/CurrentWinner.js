@@ -7,7 +7,7 @@ const CurrentWinner = React.createClass({
         <div className="current-winner">
           <h2>Current Winner</h2>
           <p>{this.props.winner ? this.props.winner.name : ''}</p>
-          <button>Not Here</button>
+          <button onClick={this.props.rejectWinner}>Not Here</button>
           <button onClick={this.props.saveWinner}>Play Again</button>
           <button onClick={this.props.saveWinner}>Finished</button>
         </div>
@@ -18,7 +18,6 @@ const CurrentWinner = React.createClass({
       )
     }
   }
-
 });
 
 export default CurrentWinner;
