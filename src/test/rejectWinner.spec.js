@@ -1,5 +1,5 @@
-import { rejectWinner } from './redux/actionCreators'
-import rootReducer from './redux/reducers'
+import { rejectWinner } from '../redux/actionCreators'
+import rootReducer from '../redux/reducers'
 import deepFreeze from 'deep-freeze';
 
 it('rejects the current winner', () => {
