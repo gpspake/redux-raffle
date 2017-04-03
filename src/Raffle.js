@@ -51,7 +51,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('state...', state);
   return {
     contestants: state.contestants,
     winners: state.winners,
