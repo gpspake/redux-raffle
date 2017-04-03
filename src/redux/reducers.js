@@ -1,4 +1,4 @@
-import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER } from './actions'
+import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER, UPDATE_CONTESTANTS } from './actions'
 import Data from '../data.json';
 
 const DEFAULT_STATE = Data;
@@ -26,6 +26,27 @@ const rejectWinner = (state) => {
   return Object.assign({}, state, {contestants}, {winner});
 };
 
+const updateContestants = (state, action) => {
+  //create a list of winner ids
+  const winners = state.winners.map((winner) => winner.id);
+
+  //add current winner to list of winner ids
+  if(state.winner.id) { winners.push(state.winner.id) };
+
+  console.log('winners', winners)
+
+  //determine whether a person has already won
+  //by checking their id against the list of winner ids
+  const contestant = (person) => !winners.includes(person.id);
+
+  //create a new contestants array that includes any new people but not winners
+  const contestants = action.newContestants.filter( contestant );
+
+
+  //return a new state object with the updated contestants
+  return Object.assign({}, state, {contestants});
+};
+
 const rootReducer = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case CHOOSE_WINNER:
@@ -34,6 +55,8 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       return saveWinner(state);
     case REJECT_WINNER:
       return rejectWinner(state);
+    case UPDATE_CONTESTANTS:
+      return updateContestants(state, action);
     default:
       return state
   }
