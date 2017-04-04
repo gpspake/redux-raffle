@@ -4,14 +4,16 @@ import Data from '../data.json';
 const DEFAULT_STATE = Data;
 
 const chooseWinner = (state, action) => {
-  const winner = state.contestants[action.winnerIndex];
+  const winner = state.contestantsList.contestants[action.winnerIndex];
 
   const contestants = [
-    ...state.contestants.slice(0, action.winnerIndex),
-    ...state.contestants.slice(action.winnerIndex + 1)
+    ...state.contestantsList.contestants.slice(0, action.winnerIndex),
+    ...state.contestantsList.contestants.slice(action.winnerIndex + 1)
   ];
 
-  return Object.assign({}, state, { winner }, { contestants });
+  const contestantsList = Object.assign({}, state.contestantsList, {contestants});
+
+  return Object.assign({}, state, {winner}, {contestantsList});
 };
 
 const saveWinner = (state) => {
