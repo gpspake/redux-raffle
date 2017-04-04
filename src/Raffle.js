@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    contestants: state.contestants,
+    contestants: state.contestantsList.contestants,
     winners: state.winners,
     currentWinner: state.winner,
   };

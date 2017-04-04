@@ -1,9 +1,13 @@
 {
-  "contestants": [
-    { "id": "111", "name": "john" },
-    { "id": "222", "name": "mary" },
-    { "id": "333", "name": "dave" }
-  ],
+  "contestantsList": {
+    "contestants": [
+      { "id": "111", "name": "john" },
+      { "id": "222", "name": "mary" },
+      { "id": "333", "name": "dave" }
+    ],
+    "error": null,
+    "loading": false
+  },
   "winner": {},
   "winners": [
     { "id": "444", "name": "joan" },
