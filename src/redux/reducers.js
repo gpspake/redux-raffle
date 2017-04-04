@@ -23,9 +23,13 @@ const saveWinner = (state) => {
 };
 
 const rejectWinner = (state) => {
-  const contestants = [...state.contestants, state.winner]
-  const winner = {}
-  return Object.assign({}, state, {contestants}, {winner});
+  const contestants = [...state.contestantsList.contestants, state.winner];
+
+  const contestantsList = Object.assign({}, state.contestantsList, { contestants });
+
+  const winner = {};
+
+  return Object.assign({}, state, {contestantsList}, {winner});
 };
 
 const updateContestants = (state, action) => {
