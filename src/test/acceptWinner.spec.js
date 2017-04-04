@@ -11,7 +11,7 @@ it('accepts the current winner', () => {
         {"id": "222", "name": "mary"}
       ],
       "loading": false,
-      "error": true
+      "error": false
     },
     "winner": {"id": "333", "name": "dave"},
     "winners": [
@@ -29,7 +29,7 @@ it('accepts the current winner', () => {
         {"id": "222", "name": "mary"}
       ],
       "loading": false,
-      "error": true
+      "error": false
     },
     "winner": {},
     "winners": [

@@ -12,7 +12,7 @@ it('chooses a winner', () => {
         {"id": "333", "name": "dave"}
       ],
       "loading": false,
-      "error": true
+      "error": false
     },
     "winner": {},
     "winners": [
@@ -30,7 +30,7 @@ it('chooses a winner', () => {
         {"id": "333", "name": "dave"}
       ],
       "loading": false,
-      "error": true
+      "error": false
     },
     "winner": {"id": "222", "name": "mary"},
     "winners": [
