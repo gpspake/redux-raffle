@@ -1,4 +1,4 @@
-import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER, UPDATE_CONTESTANTS } from './actions'
+import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER, FETCH_CONTESTANTS, UPDATE_CONTESTANTS } from './actions'
 import Data from '../data.json';
 
 const DEFAULT_STATE = Data;
@@ -32,6 +32,14 @@ const rejectWinner = (state) => {
   return Object.assign({}, state, {contestantsList}, {winner});
 };
 
+const fetchContestants = (state) => {
+  const loading = true;
+
+  const contestantsList = Object.assign({}, state.contestantsList, { loading });
+
+  return Object.assign({}, state, {contestantsList});
+};
+
 const updateContestants = (state, action) => {
   //create a list of winner ids
   const winners = state.winners.map((winner) => winner.id);
@@ -61,6 +69,8 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       return saveWinner(state);
     case REJECT_WINNER:
       return rejectWinner(state);
+    case FETCH_CONTESTANTS:
+      return fetchContestants(state);
     case UPDATE_CONTESTANTS:
       return updateContestants(state, action);
     default:
