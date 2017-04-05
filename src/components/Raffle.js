@@ -6,7 +6,10 @@ import Contestants from '../Contestants'
 
 const Raffle = React.createClass({
   handleChooseWinner() {
-    this.props.dispatchChooseWinner(1)
+    if (this.props.contestants.length >= 1) {
+      const randomContestant = Math.floor(Math.random() * (this.props.contestants.length - 1));
+      this.props.dispatchChooseWinner(randomContestant);
+    }
   },
   handleSaveWinner() {
     this.props.dispatchSaveWinner();
