@@ -3,8 +3,18 @@ import logo from '../logo.svg';
 import CurrentWinner from '../CurrentWinner'
 import Winners from '../Winners'
 import Contestants from '../Contestants'
+const { func, object, array } = React.PropTypes;
 
 const Raffle = React.createClass({
+  propTypes: {
+    dispatchChooseWinner: func,
+    dispatchSaveWinner: func,
+    dispatchRejectWinner: func,
+    currentWinner: object,
+    contestantsList: object,
+    contestants: array,
+    winners: array
+  },
   handleChooseWinner() {
     if (this.props.contestants.length >= 1) {
       const randomContestant = Math.floor(Math.random() * (this.props.contestants.length - 1));
