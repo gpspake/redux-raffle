@@ -1,17 +1,19 @@
-import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER, UPDATE_CONTESTANTS } from './actions'
+import { CHOOSE_WINNER, SAVE_WINNER, REJECT_WINNER, FETCH_CONTESTANTS, UPDATE_CONTESTANTS } from './actions'
 import Data from '../data.json';
 
 const DEFAULT_STATE = Data;
 
 const chooseWinner = (state, action) => {
-  const winner = state.contestants[action.winnerIndex];
+  const winner = state.contestantsList.contestants[action.winnerIndex];
 
   const contestants = [
-    ...state.contestants.slice(0, action.winnerIndex),
-    ...state.contestants.slice(action.winnerIndex + 1)
+    ...state.contestantsList.contestants.slice(0, action.winnerIndex),
+    ...state.contestantsList.contestants.slice(action.winnerIndex + 1)
   ];
 
-  return Object.assign({}, state, { winner }, { contestants });
+  const contestantsList = Object.assign({}, state.contestantsList, {contestants});
+
+  return Object.assign({}, state, {winner}, {contestantsList});
 };
 
 const saveWinner = (state) => {
@@ -21,9 +23,21 @@ const saveWinner = (state) => {
 };
 
 const rejectWinner = (state) => {
-  const contestants = [...state.contestants, state.winner]
-  const winner = {}
-  return Object.assign({}, state, {contestants}, {winner});
+  const contestants = [...state.contestantsList.contestants, state.winner];
+
+  const contestantsList = Object.assign({}, state.contestantsList, { contestants });
+
+  const winner = {};
+
+  return Object.assign({}, state, {contestantsList}, {winner});
+};
+
+const fetchContestants = (state) => {
+  const loading = true;
+
+  const contestantsList = Object.assign({}, state.contestantsList, { loading });
+
+  return Object.assign({}, state, {contestantsList});
 };
 
 const updateContestants = (state, action) => {
@@ -55,6 +69,8 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       return saveWinner(state);
     case REJECT_WINNER:
       return rejectWinner(state);
+    case FETCH_CONTESTANTS:
+      return fetchContestants(state);
     case UPDATE_CONTESTANTS:
       return updateContestants(state, action);
     default:

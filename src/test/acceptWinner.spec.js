@@ -5,10 +5,14 @@ import deepFreeze from 'deep-freeze';
 it('accepts the current winner', () => {
 
   const initialState = {
-    "contestants": [
-      {"id": "111", "name": "john"},
-      {"id": "222", "name": "mary"}
-    ],
+    "contestantsList": {
+      "contestants": [
+        {"id": "111", "name": "john"},
+        {"id": "222", "name": "mary"}
+      ],
+      "loading": false,
+      "error": false
+    },
     "winner": {"id": "333", "name": "dave"},
     "winners": [
       {"id": "444", "name": "joan"},
@@ -19,10 +23,14 @@ it('accepts the current winner', () => {
   deepFreeze(initialState);
 
   const newState = {
-    "contestants": [
-      {"id": "111", "name": "john"},
-      {"id": "222", "name": "mary"}
-    ],
+    "contestantsList": {
+      "contestants": [
+        {"id": "111", "name": "john"},
+        {"id": "222", "name": "mary"}
+      ],
+      "loading": false,
+      "error": false
+    },
     "winner": {},
     "winners": [
       {"id": "444", "name": "joan"},
