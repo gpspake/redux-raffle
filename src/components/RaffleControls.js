@@ -1,7 +1,7 @@
 import React from 'react';
 const { func, object } = React.PropTypes;
 
-const CurrentWinner = React.createClass({
+const RaffleControls = React.createClass({
   propTypes: {
     chooseWinner: func,
     saveWinner: func,
@@ -33,4 +33,4 @@ const CurrentWinner = React.createClass({
   }
 });
 
-export default CurrentWinner;
+export default RaffleControls;
