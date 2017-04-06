@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from '../logo.svg';
-import CurrentWinner from '../CurrentWinner'
-import Winners from '../Winners'
-import Contestants from '../Contestants'
+import CurrentWinner from '../components/CurrentWinner'
+import Winners from '../components/Winners'
+import Contestants from '../components/Contestants'
 const { func, object, array } = React.PropTypes;
 
 const Raffle = React.createClass({
