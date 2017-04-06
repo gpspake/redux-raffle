@@ -20,13 +20,14 @@ const CurrentWinner = React.createClass({
     if(this.props.winner.name) {
       return (
         <div className="current-winner">
-          <h2>Current Winner</h2>
-          <p>{this.props.winner ? this.props.winner.name : ''}</p>
+          <button onClick={this.handleNotHere}>Skip winner and play again</button>
+          <button onClick={this.handlePlayAgain}>Save winner and play again</button>
+          <button onClick={this.props.saveWinner}>Save winner and finish</button>
         </div>
       );
     } else {
       return (
-        <div></div>
+        <button onClick={this.props.chooseWinner}>Choose Winner</button>
       )
     }
   }

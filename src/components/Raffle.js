@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import CurrentWinner from '../components/CurrentWinner'
 import Winners from '../components/Winners'
 import Contestants from '../components/Contestants'
+import RaffleControls from '../components/RaffleControls'
 const { func, object, array } = React.PropTypes;
 
 const Raffle = React.createClass({
@@ -35,13 +36,14 @@ const Raffle = React.createClass({
           <h2>Welcome to React</h2>
         </div>
         <CurrentWinner
+          winner={this.props.currentWinner}/>
+        <Contestants contestants={this.props.contestants} />
+        <Winners winners={this.props.winners} />
+        <RaffleControls
           winner={this.props.currentWinner}
           saveWinner={this.handleSaveWinner}
           rejectWinner={this.handleRejectWinner}
           chooseWinner={this.handleChooseWinner}/>
-        <Contestants contestants={this.props.contestants} />
-        <Winners winners={this.props.winners} />
-        <button onClick={this.handleChooseWinner}>Choose Winner</button>
       </div>
     );
   }
