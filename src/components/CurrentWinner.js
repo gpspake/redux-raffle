@@ -1,20 +1,9 @@
 import React from 'react';
-const { func, object } = React.PropTypes;
+const { object } = React.PropTypes;
 
 const CurrentWinner = React.createClass({
   propTypes: {
-    chooseWinner: func,
-    saveWinner: func,
-    rejectWinner: func,
     winner: object
-  },
-  handleNotHere(){
-    this.props.rejectWinner();
-    this.props.chooseWinner();
-  },
-  handlePlayAgain(){
-    this.props.saveWinner();
-    this.props.chooseWinner();
   },
   render() {
     if(this.props.winner.name) {

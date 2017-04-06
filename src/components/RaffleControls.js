@@ -1,20 +1,33 @@
 import React from 'react';
-const { func, object } = React.PropTypes;
+const { func, object, array } = React.PropTypes;
 
 const RaffleControls = React.createClass({
   propTypes: {
-    chooseWinner: func,
-    saveWinner: func,
-    rejectWinner: func,
-    winner: object
+    dispatchChooseWinner: func,
+    dispatchSaveWinner: func,
+    dispatchRejectWinner: func,
+    winner: object,
+    contestants: array
+  },
+  handleChooseWinner() {
+    if (this.props.contestants.length >= 1) {
+      const randomContestant = Math.floor(Math.random() * (this.props.contestants.length - 1));
+      this.props.dispatchChooseWinner(randomContestant);
+    }
+  },
+  handleSaveWinner() {
+    this.props.dispatchSaveWinner();
+  },
+  handleRejectWinner() {
+    this.props.dispatchRejectWinner();
   },
   handleNotHere(){
-    this.props.rejectWinner();
-    this.props.chooseWinner();
+    this.handleRejectWinner();
+    this.handleChooseWinner();
   },
   handlePlayAgain(){
-    this.props.saveWinner();
-    this.props.chooseWinner();
+    this.handleSaveWinner();
+    this.handleChooseWinner();
   },
   render() {
     if(this.props.winner.name) {
@@ -22,12 +35,12 @@ const RaffleControls = React.createClass({
         <div className="current-winner">
           <button onClick={this.handleNotHere}>Skip winner and play again</button>
           <button onClick={this.handlePlayAgain}>Save winner and play again</button>
-          <button onClick={this.props.saveWinner}>Save winner and finish</button>
+          <button onClick={this.handleSaveWinner}>Save winner and finish</button>
         </div>
       );
     } else {
       return (
-        <button onClick={this.props.chooseWinner}>Choose Winner</button>
+        <button onClick={this.handleChooseWinner}>Choose Winner</button>
       )
     }
   }

@@ -3,30 +3,15 @@ import logo from '../logo.svg';
 import CurrentWinner from '../components/CurrentWinner'
 import Winners from '../components/Winners'
 import Contestants from '../components/Contestants'
-import RaffleControls from '../components/RaffleControls'
-const { func, object, array } = React.PropTypes;
+import RaffleControls from '../containers/RaffleControlsContainer'
+const { object, array } = React.PropTypes;
 
 const Raffle = React.createClass({
   propTypes: {
-    dispatchChooseWinner: func,
-    dispatchSaveWinner: func,
-    dispatchRejectWinner: func,
     currentWinner: object,
     contestantsList: object,
     contestants: array,
     winners: array
-  },
-  handleChooseWinner() {
-    if (this.props.contestants.length >= 1) {
-      const randomContestant = Math.floor(Math.random() * (this.props.contestants.length - 1));
-      this.props.dispatchChooseWinner(randomContestant);
-    }
-  },
-  handleSaveWinner() {
-    this.props.dispatchSaveWinner();
-  },
-  handleRejectWinner() {
-    this.props.dispatchRejectWinner();
   },
   render() {
     return (
@@ -40,10 +25,8 @@ const Raffle = React.createClass({
         <Contestants contestants={this.props.contestants} />
         <Winners winners={this.props.winners} />
         <RaffleControls
-          winner={this.props.currentWinner}
-          saveWinner={this.handleSaveWinner}
-          rejectWinner={this.handleRejectWinner}
-          chooseWinner={this.handleChooseWinner}/>
+          contestants={this.props.contestants}
+          winner={this.props.currentWinner}/>
       </div>
     );
   }
