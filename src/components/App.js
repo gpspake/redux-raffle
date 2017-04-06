@@ -5,9 +5,6 @@ import chooseWinner from '../redux/actionCreators'
 import Raffle from '../containers/RaffleContainer'
 
 const App = React.createClass({
-  handleClick() {
-    store.dispatch(chooseWinner(1));
-  },
   render() {
     return (
       <Provider store={store}>
